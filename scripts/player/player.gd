@@ -22,3 +22,10 @@ func apply_gravity(delta: float) -> void:
 
 func jump() -> void:
 	velocity.y = -jump_impulse
+
+
+func reset(new_position: Vector2) -> void:
+	position = new_position
+	# reset lives
+	show()
+	$CollisionShape2D.set_deferred("disabled", false)

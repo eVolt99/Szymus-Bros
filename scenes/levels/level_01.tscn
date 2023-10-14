@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qx1fclms4d5j"]
+
+[ext_resource type="PackedScene" uid="uid://u3yge6eccsyl" path="res://scenes/levels/level_base.tscn" id="1_j48qa"]
+
+[node name="Level01" instance=ExtResource("1_j48qa")]
+
+[node name="WorldTileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(131068, 196609, 1, 131069, 196609, 1, 131070, 196609, 1, 131071, 196609, 1, 65536, 196609, 1, 65537, 196609, 1, 65538, 196609, 1, 65539, 196609, 1, 65540, 196609, 1, 65541, 196609, 1, 65542, 196609, 1, 65543, 196609, 1, 65544, 196609, 1, 65545, 196609, 1, 65546, 196609, 1, 65547, 196609, 1, 65548, 196609, 1, 65549, 196609, 1)
