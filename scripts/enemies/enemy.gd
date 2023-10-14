@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var move_speed := 50.0
 @export var gravity := 900.0
+@export var wall_bump_impulse := 100.0
 
 var direction := 1
 
@@ -19,4 +20,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if is_on_wall():
 		direction = -direction
-		velocity.y = -100
+		velocity.y = -wall_bump_impulse
