@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://qx1fclms4d5j"]
+[gd_scene load_steps=3 format=3 uid="uid://qx1fclms4d5j"]
 
 [ext_resource type="PackedScene" uid="uid://u3yge6eccsyl" path="res://scenes/levels/level_base.tscn" id="1_j48qa"]
+[ext_resource type="PackedScene" uid="uid://cwo8n6udstjii" path="res://scenes/enemies/enemy.tscn" id="2_53lr4"]
 
 [node name="Level01" instance=ExtResource("1_j48qa")]
 
 [node name="WorldTileMap" parent="." index="0"]
-layer_0/tile_data = PackedInt32Array(131068, 196609, 1, 131069, 196609, 1, 131070, 196609, 1, 131071, 196609, 1, 65536, 196609, 1, 65537, 196609, 1, 65538, 196609, 1, 65539, 196609, 1, 65540, 196609, 1, 65541, 196609, 1, 65542, 196609, 1, 65543, 196609, 1, 65544, 196609, 1, 65545, 196609, 1, 65546, 196609, 1, 65547, 196609, 1, 65548, 196609, 1, 65549, 196609, 1)
+layer_0/tile_data = PackedInt32Array(131068, 196609, 1, 131069, 196609, 1, 131070, 196609, 1, 131071, 196609, 1, 65536, 196609, 1, 65537, 196609, 1, 65538, 196609, 1, 65539, 196609, 1, 65540, 196609, 1, 65541, 196609, 1, 65542, 196609, 1, 65543, 196609, 1, 65544, 196609, 1, 65545, 196609, 1, 65546, 196609, 1, 65547, 196609, 1, 65548, 196609, 1, 65549, 196609, 1, 65532, 1114112, 9)
+
+[node name="DangerTileMap" parent="." index="2"]
+layer_0/tile_data = PackedInt32Array(13, 589824, 12, 12, 589824, 12, 11, 589824, 12, 10, 589824, 12, 9, 589824, 12)
+
+[node name="SpawnPosition" parent="." index="3"]
+position = Vector2(0, 16)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("2_53lr4")]
+position = Vector2(132, -6)
+collision_mask = 7
+
+[node name="Player" parent="." index="6"]
+position = Vector2(0, 16)

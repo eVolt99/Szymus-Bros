@@ -9,6 +9,10 @@ func enter(_msg := {}) -> void:
 func physics_update(_delta: float) -> void:
 	player.handle_movement()
 	player.move_and_slide()
+	var collision := player.check_collisions()
+	if collision != Player.SlideCollision.NONE:
+		player.handle_collision(collision)
+		return
 
 	if is_equal_approx(player.velocity.x, 0):
 		state_machine.transition_to("PlayerIdle")

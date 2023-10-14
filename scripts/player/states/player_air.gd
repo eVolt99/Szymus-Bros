@@ -18,6 +18,10 @@ func physics_update(delta: float) -> void:
 	player.handle_movement()
 	player.apply_gravity(delta)
 	player.move_and_slide()
+	var collision := player.check_collisions()
+	if collision != Player.SlideCollision.NONE:
+		player.handle_collision(collision)
+		return
 
 	if player.is_on_floor():
 		state_machine.transition_to("PlayerIdle")
