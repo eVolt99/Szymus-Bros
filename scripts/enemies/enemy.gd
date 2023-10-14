@@ -17,11 +17,6 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.flip_h = velocity.x > 0
 	velocity.y += gravity * delta
 	move_and_slide()
-
-	for c in get_slide_collision_count():
-		var collision := get_slide_collision(c)
-		var is_wall := collision.get_normal().x != 0
-		print(collision.get_collider())
-		if is_wall:
-			direction = sign(collision.get_normal().x)
-			velocity.y = -100
+	if is_on_wall():
+		direction = -direction
+		velocity.y = -100
