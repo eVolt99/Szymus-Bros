@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjriv8yh6i6se"]
+[gd_scene load_steps=14 format=3 uid="uid://bjriv8yh6i6se"]
 
 [ext_resource type="Texture2D" uid="uid://bps2dkhdtg5nt" path="res://assets/player_sheet.png" id="1_cbsmq"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_nekf4"]
+[ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="3_2n3wg"]
+[ext_resource type="Script" path="res://scripts/player/states/player_idle.gd" id="4_o5oo1"]
+[ext_resource type="Script" path="res://scripts/player/states/player_air.gd" id="5_sle0i"]
+[ext_resource type="Script" path="res://scripts/player/states/player_run.gd" id="6_m4so5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mx6ar"]
-radius = 6.0
-height = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xbt"]
+size = Vector2(10, 21)
 
 [sub_resource type="Animation" id="Animation_xwqct"]
 resource_name = "idle"
@@ -98,6 +101,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 14
 script = ExtResource("1_nekf4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -107,8 +111,11 @@ hframes = 19
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -10)
-shape = SubResource("CapsuleShape2D_mx6ar")
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_d3xbt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -116,3 +123,16 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_cl3p6")
 }
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_2n3wg")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine"]
+script = ExtResource("4_o5oo1")
+
+[node name="PlayerAir" type="Node" parent="StateMachine"]
+script = ExtResource("5_sle0i")
+
+[node name="PlayerRun" type="Node" parent="StateMachine"]
+script = ExtResource("6_m4so5")
