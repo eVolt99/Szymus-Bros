@@ -136,7 +136,7 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_d3xbt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -50)
+offset = Vector2(0, -45)
 zoom = Vector2(2.5, 2.5)
 process_callback = 0
 limit_top = 0
@@ -159,6 +159,10 @@ script = ExtResource("4_o5oo1")
 
 [node name="PlayerAir" type="Node" parent="StateMachine"]
 script = ExtResource("5_sle0i")
+
+[node name="DoubleJumpTimer" type="Timer" parent="StateMachine/PlayerAir"]
+wait_time = 0.2
+one_shot = true
 
 [node name="PlayerRun" type="Node" parent="StateMachine"]
 script = ExtResource("6_m4so5")

@@ -10,6 +10,7 @@ signal lives_changed(new_lives: int)
 @export var jump_impulse := 350.0
 @export var gravity := 800.0
 @export var kill_impulse := 200.0
+@export var max_jumps := 2
 
 var last_movement_direction := 0.0
 var lives := 5:
@@ -31,10 +32,6 @@ func handle_movement() -> void:
 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
-
-
-func jump() -> void:
-	velocity.y = -jump_impulse
 
 
 func check_collisions() -> SlideCollision:
