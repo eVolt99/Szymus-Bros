@@ -79,7 +79,7 @@ script = ExtResource("1_1c7au")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -14)
-texture = ExtResource("1_0wjr7")
+texture = ExtResource("1_s3gbk")
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

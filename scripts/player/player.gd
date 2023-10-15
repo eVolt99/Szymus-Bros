@@ -3,15 +3,22 @@ extends CharacterBody2D
 
 enum SlideCollision { DANGER = 1, ENEMY = 2, NONE = 3 }
 
+signal died
+signal lives_changed(new_lives: int)
+
 @export var move_speed := 150.0
 @export var jump_impulse := 350.0
 @export var gravity := 800.0
+@export var kill_impulse := 200.0
 
 var last_movement_direction := 0.0
+var lives := 5:
+	set = set_lives
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var state_machine: StateMachine = $StateMachine
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 func handle_movement() -> void:
@@ -37,7 +44,11 @@ func check_collisions() -> SlideCollision:
 		if collision.is_in_group("danger"):
 			return SlideCollision.DANGER
 		if collision.is_in_group("enemies"):
-			return SlideCollision.ENEMY
+			if position.y < get_slide_collision(c).get_position().y:  # If player on top of enemy
+				collision.kill()
+				return SlideCollision.ENEMY
+			else:
+				return SlideCollision.DANGER
 	return SlideCollision.NONE
 
 
@@ -46,7 +57,12 @@ func handle_collision(collision: SlideCollision) -> void:
 		SlideCollision.DANGER:
 			state_machine.transition_to("PlayerHurt")
 		SlideCollision.ENEMY:
-			pass
+			velocity.y = -kill_impulse
+
+
+func set_lives(new_lives: int) -> void:
+	lives = new_lives
+	lives_changed.emit(lives)
 
 
 func reset(new_position: Vector2) -> void:

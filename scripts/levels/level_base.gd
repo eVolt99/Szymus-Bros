@@ -1,6 +1,7 @@
 extends Node2D
 
 var item_scene: PackedScene = preload("res://scenes/world/item.tscn")
+var door_scene: PackedScene = preload("res://scenes/world/door.tscn")
 
 @onready var player: Player = $Player
 @onready var spawn_position: Marker2D = $SpawnPosition
@@ -27,6 +28,19 @@ func spawn_items() -> void:
 	for cell in item_cells:
 		var data := items_tilemap.get_cell_tile_data(0, cell)
 		var type: String = data.get_custom_data("type")
-		var item: Item = item_scene.instantiate()
-		item.start(type, items_tilemap.map_to_local(cell))
-		$Items.add_child(item)
+		match type:
+			"item":
+				var item: Item = item_scene.instantiate()
+				item.start(type, items_tilemap.map_to_local(cell))
+				$Items.add_child(item)
+			"door":
+				var door := door_scene.instantiate()
+				door.position = items_tilemap.map_to_local(cell)
+				door.body_entered.connect(_on_door_body_entered)
+				$Items.add_child(door)
+
+
+func _on_door_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		print("Door touched by player")
+		pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjriv8yh6i6se"]
+[gd_scene load_steps=17 format=3 uid="uid://bjriv8yh6i6se"]
 
 [ext_resource type="Texture2D" uid="uid://bps2dkhdtg5nt" path="res://assets/player_sheet.png" id="1_cbsmq"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_nekf4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player/states/player_air.gd" id="5_sle0i"]
 [ext_resource type="Script" path="res://scripts/player/states/player_run.gd" id="6_m4so5"]
 [ext_resource type="Script" path="res://scripts/player/states/player_hurt.gd" id="7_cyovb"]
+[ext_resource type="Script" path="res://scripts/player/states/player_dead.gd" id="8_xgemk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xbt"]
 size = Vector2(10, 20)
@@ -135,7 +136,12 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_d3xbt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -50)
 zoom = Vector2(2.5, 2.5)
+process_callback = 0
+limit_top = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -163,5 +169,8 @@ script = ExtResource("7_cyovb")
 [node name="HurtTimer" type="Timer" parent="StateMachine/PlayerHurt"]
 wait_time = 0.5
 one_shot = true
+
+[node name="PlayerDead" type="Node" parent="StateMachine"]
+script = ExtResource("8_xgemk")
 
 [connection signal="timeout" from="StateMachine/PlayerHurt/HurtTimer" to="StateMachine/PlayerHurt" method="_on_hurt_timer_timeout"]

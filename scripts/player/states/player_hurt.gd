@@ -8,6 +8,10 @@ const KNOCKBACK_STRENGTH := -200.0
 
 func enter(_msg := {}) -> void:
 	player.animation.play("hurt")
+	player.lives -= 1
+	if player.lives <= 0:
+		state_machine.transition_to("PlayerDead")
+		return
 	player.velocity = Vector2(
 		(KNOCKBACK_STRENGTH / 2) * signf(player.last_movement_direction), KNOCKBACK_STRENGTH
 	)
