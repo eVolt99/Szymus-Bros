@@ -12,6 +12,7 @@ signal lives_changed(new_lives: int)
 @export var kill_impulse := 200.0
 @export var max_jumps := 2
 
+var last_floor := false
 var last_movement_direction := 0.0
 var lives := 5:
 	set = set_lives
@@ -26,12 +27,14 @@ func handle_movement() -> void:
 	var movement_x := Input.get_axis("left", "right")
 	if movement_x != 0:
 		sprite.flip_h = movement_x < 0
+		velocity.x = lerp(velocity.x, move_speed * movement_x, 0.35)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.95)
 	last_movement_direction = movement_x
-	velocity.x = move_speed * movement_x
 
 
-func apply_gravity(delta: float) -> void:
-	velocity.y += gravity * delta
+func apply_gravity(delta: float, grav := gravity) -> void:
+	velocity.y += grav * delta
 
 
 func check_collisions() -> SlideCollision:
