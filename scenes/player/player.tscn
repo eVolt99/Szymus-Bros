@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bjriv8yh6i6se"]
+[gd_scene load_steps=18 format=3 uid="uid://bjriv8yh6i6se"]
 
 [ext_resource type="Texture2D" uid="uid://bps2dkhdtg5nt" path="res://assets/player_sheet.png" id="1_cbsmq"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_nekf4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player/states/player_run.gd" id="6_m4so5"]
 [ext_resource type="Script" path="res://scripts/player/states/player_hurt.gd" id="7_cyovb"]
 [ext_resource type="Script" path="res://scripts/player/states/player_dead.gd" id="8_xgemk"]
+[ext_resource type="Script" path="res://scripts/player/states/player_coyote.gd" id="9_yithg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xbt"]
 size = Vector2(10, 20)
@@ -177,4 +178,12 @@ one_shot = true
 [node name="PlayerDead" type="Node" parent="StateMachine"]
 script = ExtResource("8_xgemk")
 
+[node name="PlayerCoyote" type="Node" parent="StateMachine"]
+script = ExtResource("9_yithg")
+
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/PlayerCoyote"]
+one_shot = true
+
+[connection signal="timeout" from="StateMachine/PlayerAir/DoubleJumpTimer" to="StateMachine/PlayerAir" method="_on_double_jump_timer_timeout"]
 [connection signal="timeout" from="StateMachine/PlayerHurt/HurtTimer" to="StateMachine/PlayerHurt" method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="StateMachine/PlayerCoyote/CoyoteTimer" to="StateMachine/PlayerCoyote" method="_on_coyote_timer_timeout"]

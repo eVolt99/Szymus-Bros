@@ -1,14 +1,16 @@
 class_name PlayerAir
 extends PlayerState
 
-var jumps_left: int
+var can_jump: bool
+var jump_count := 0
 
 @onready var double_jump_timer: Timer = $DoubleJumpTimer
 
 
 func enter(msg := {}) -> void:
+	can_jump = false
 	if msg.has("jump"):
-		jumps_left = player.max_jumps
+		can_jump = true
 		jump()
 
 
@@ -30,18 +32,22 @@ func physics_update(delta: float) -> void:
 
 	if player.is_on_floor():
 		double_jump_timer.stop()
+		jump_count = 0
 		state_machine.transition_to("PlayerIdle")
 
 
 func unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump") and jumps_left > 0:
+	if event.is_action_pressed("jump") and not player.is_on_floor():
 		jump()
 
 
 func jump() -> void:
-	if double_jump_timer.is_stopped():
-		player.velocity.y = (
-			-player.jump_impulse if jumps_left == player.max_jumps else -player.jump_impulse * 0.75
-		)
-		jumps_left -= 1
+	if can_jump and jump_count < player.max_jumps:
+		player.velocity.y = -player.jump_impulse
 		double_jump_timer.start()
+		can_jump = false
+		jump_count += 1
+
+
+func _on_double_jump_timer_timeout() -> void:
+	can_jump = true
