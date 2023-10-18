@@ -11,6 +11,5 @@ func start(type: String, new_position: Vector2) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		print("Item picked up!")
 		picked_up.emit()
 		queue_free()
