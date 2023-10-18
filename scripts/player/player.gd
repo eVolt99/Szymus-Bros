@@ -7,11 +7,13 @@ signal died
 signal lives_changed(new_lives: int)
 
 @export var move_speed := 150.0
+@export var climb_speed := 100.0
 @export var jump_impulse := 350.0
 @export var gravity := 800.0
 @export var kill_impulse := 200.0
 @export var max_jumps := 2
 
+var can_climb := false
 var last_floor := false
 var last_movement_direction := 0.0
 var lives := 5:
@@ -67,6 +69,6 @@ func set_lives(new_lives: int) -> void:
 
 func reset(new_position: Vector2) -> void:
 	position = new_position
-	# reset lives
+	lives = 5
 	show()
 	$CollisionShape2D.set_deferred("disabled", false)

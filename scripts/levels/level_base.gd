@@ -14,6 +14,7 @@ func _ready() -> void:
 	player.reset(spawn_position.global_position)
 	limit_player_camera()
 	spawn_items()
+	spawn_ladders()
 
 
 func limit_player_camera() -> void:
@@ -38,6 +39,21 @@ func spawn_items() -> void:
 				door.position = items_tilemap.map_to_local(cell)
 				door.body_entered.connect(_on_door_body_entered)
 				$Items.add_child(door)
+
+
+func spawn_ladders() -> void:
+	var ladder_cells := world_tilemap.get_used_cells(0)
+	for cell in ladder_cells:
+		var data := world_tilemap.get_cell_tile_data(0, cell)
+		var type: String = data.get_custom_data("type")
+		match type:
+			"ladder":
+				var collision := CollisionShape2D.new()
+				var collision_shape := RectangleShape2D.new()
+				collision_shape.size = Vector2(8, 16)  # Not the full width of the ladder is climbable
+				collision.shape = collision_shape
+				collision.position = world_tilemap.map_to_local(cell)
+				$Ladders.add_child(collision)
 
 
 func _on_door_body_entered(body: Node2D) -> void:
