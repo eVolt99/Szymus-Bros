@@ -17,7 +17,7 @@ func physics_update(_delta: float) -> void:
 	if collision != Player.SlideCollision.NONE:
 		player.handle_collision(collision)
 		return
-	if not is_equal_approx(player.velocity.x, 0):
+	if not is_zero_approx(player.velocity.x):
 		state_machine.transition_to("PlayerRun")
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://u3yge6eccsyl"]
+[gd_scene load_steps=24 format=3 uid="uid://u3yge6eccsyl"]
 
 [ext_resource type="PackedScene" uid="uid://bjriv8yh6i6se" path="res://scenes/player/player.tscn" id="1_71cgg"]
 [ext_resource type="Script" path="res://scripts/levels/level_base.gd" id="1_alc36"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cwfbq0e2qyjmn" path="res://assets/environment/back.png" id="3_sblw7"]
 [ext_resource type="Texture2D" uid="uid://7yw25a74mu36" path="res://assets/environment/middle.png" id="4_jhxo8"]
 [ext_resource type="Texture2D" uid="uid://moudiaka6iv6" path="res://assets/gem_spawn.png" id="4_oll5q"]
+[ext_resource type="Script" path="res://scripts/world/ladders.gd" id="9_e02d0"]
 
 [sub_resource type="Animation" id="Animation_fwmu4"]
 length = 0.001
@@ -1198,7 +1199,12 @@ format = 2
 [node name="Items" type="Node" parent="."]
 
 [node name="Ladders" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("9_e02d0")
 
 [node name="SpawnPosition" type="Marker2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_71cgg")]
+
+[connection signal="body_entered" from="Ladders" to="Ladders" method="_on_body_entered"]
+[connection signal="body_exited" from="Ladders" to="Ladders" method="_on_body_exited"]

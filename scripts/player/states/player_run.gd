@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 		player.handle_collision(collision)
 		return
 
-	if is_equal_approx(player.velocity.x, 0):
+	if is_zero_approx(player.velocity.x):
 		state_machine.transition_to("PlayerIdle")
 	elif not player.is_on_floor():
 		if player.last_floor:
