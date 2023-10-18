@@ -39,6 +39,13 @@ func apply_gravity(delta: float, grav := gravity) -> void:
 	velocity.y += grav * delta
 
 
+func will_climb(event: InputEvent) -> bool:
+	var climb_requested := event.is_action_pressed("up") or event.is_action_pressed("down")
+	if climb_requested and can_climb:
+		return true
+	return false
+
+
 func check_collisions() -> SlideCollision:
 	var collisions := get_slide_collision_count()
 	for c in collisions:

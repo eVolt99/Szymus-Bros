@@ -24,3 +24,6 @@ func physics_update(_delta: float) -> void:
 func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and player.is_on_floor():
 		state_machine.transition_to("PlayerAir", {jump = true})
+
+	if player.will_climb(event):
+		state_machine.transition_to("PlayerClimb")
