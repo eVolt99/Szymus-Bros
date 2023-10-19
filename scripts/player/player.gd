@@ -7,11 +7,13 @@ signal died
 signal lives_changed(new_lives: int)
 
 @export var move_speed := 150.0
+@export var climb_speed := 75.0
 @export var jump_impulse := 350.0
 @export var gravity := 800.0
 @export var kill_impulse := 200.0
 @export var max_jumps := 2
 
+var can_climb := false
 var last_floor := false
 var last_movement_direction := 0.0
 var lives := 5:
@@ -23,18 +25,32 @@ var lives := 5:
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
-func handle_movement() -> void:
+func handle_movement(speed := move_speed) -> void:
 	var movement_x := Input.get_axis("left", "right")
 	if movement_x != 0:
 		sprite.flip_h = movement_x < 0
-		velocity.x = lerp(velocity.x, move_speed * movement_x, 0.35)
+		velocity.x = lerp(velocity.x, speed * movement_x, 0.35)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, 0.95)
 	last_movement_direction = movement_x
 
 
+func normalize_movement(speed := move_speed) -> void:
+	if is_zero_approx(velocity.length()):
+		velocity = Vector2.ZERO
+	else:
+		velocity = velocity.normalized() * speed
+
+
 func apply_gravity(delta: float, grav := gravity) -> void:
 	velocity.y += grav * delta
+
+
+func will_climb(event: InputEvent) -> bool:
+	var climb_requested := event.is_action_pressed("up") or event.is_action_pressed("down")
+	if climb_requested and can_climb:
+		return true
+	return false
 
 
 func check_collisions() -> SlideCollision:
@@ -67,6 +83,6 @@ func set_lives(new_lives: int) -> void:
 
 func reset(new_position: Vector2) -> void:
 	position = new_position
-	# reset lives
+	lives = 5
 	show()
 	$CollisionShape2D.set_deferred("disabled", false)

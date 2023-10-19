@@ -40,6 +40,9 @@ func unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump") and not player.is_on_floor():
 		jump()
 
+	if player.will_climb(event):
+		state_machine.transition_to("PlayerClimb")
+
 
 func jump() -> void:
 	if can_jump and jump_count < player.max_jumps:
