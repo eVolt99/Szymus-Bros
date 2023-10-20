@@ -1,9 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://nv0ouqjbt71c"]
+[gd_scene load_steps=5 format=3 uid="uid://nv0ouqjbt71c"]
 
 [ext_resource type="FontFile" uid="uid://bgdpfvu60gft5" path="res://assets/Kenney Thick.ttf" id="1_fkjf0"]
 [ext_resource type="Texture2D" uid="uid://c8dow5sej6tqj" path="res://assets/heart.png" id="2_g3ukv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8tvdw"]
+font = ExtResource("1_fkjf0")
+font_size = 48
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cjenm"]
 font = ExtResource("1_fkjf0")
 font_size = 48
 outline_size = 15
@@ -45,3 +51,22 @@ texture = ExtResource("2_g3ukv")
 [node name="L3" type="TextureRect" parent="MarginContainer/LivesContainer"]
 layout_mode = 2
 texture = ExtResource("2_g3ukv")
+
+[node name="Paused" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "paused"
+label_settings = SubResource("LabelSettings_cjenm")
+horizontal_alignment = 1
+vertical_alignment = 1

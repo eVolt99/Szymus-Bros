@@ -9,7 +9,6 @@ func start(type: String, new_position: Vector2) -> void:
 	$AnimationPlayer.play(type)
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		picked_up.emit()
-		queue_free()
+func _on_body_entered(_body: Player) -> void:
+	picked_up.emit()
+	queue_free()

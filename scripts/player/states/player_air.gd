@@ -10,6 +10,7 @@ var jump_count := 0
 func enter(msg := {}) -> void:
 	can_jump = false
 	if msg.has("jump"):
+		jump_count = 0
 		can_jump = true
 		jump()
 
@@ -32,7 +33,6 @@ func physics_update(delta: float) -> void:
 
 	if player.is_on_floor():
 		double_jump_timer.stop()
-		jump_count = 0
 		state_machine.transition_to("PlayerIdle")
 
 
