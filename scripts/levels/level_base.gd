@@ -62,5 +62,5 @@ func spawn_ladders() -> void:
 				$Ladders.add_child(collision)
 
 
-func _on_door_body_entered(body: Node2D) -> void:
+func _on_door_body_entered(_body: Node2D) -> void:
 	GameState.next_level()
