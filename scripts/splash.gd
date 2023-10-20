@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var main_menu := preload("res://scenes/levels/level_01.tscn")
+var main_menu := preload("res://scenes/main_menu.tscn")
 
 
 func _on_timer_timeout() -> void:
