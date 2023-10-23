@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://7yw25a74mu36" path="res://assets/environment/middle.png" id="2_4j3fi"]
 [ext_resource type="FontFile" uid="uid://bgdpfvu60gft5" path="res://assets/Kenney Thick.ttf" id="3_qe5ph"]
 [ext_resource type="PackedScene" uid="uid://bxeh3nkrg768f" path="res://scenes/tilemaps/world_tile_map.tscn" id="4_qtsjp"]
-[ext_resource type="PackedScene" uid="uid://btvtsstowvoq1" path="res://scenes/static_player.tscn" id="5_eryqk"]
+[ext_resource type="PackedScene" uid="uid://btvtsstowvoq1" path="res://scenes/hud/static_player.tscn" id="5_eryqk"]
 
 [sub_resource type="Animation" id="Animation_5toro"]
 resource_name = "behind"
