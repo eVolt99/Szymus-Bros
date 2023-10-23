@@ -17,6 +17,12 @@ func _ready() -> void:
 	spawn_ladders()
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		get_tree().paused = not get_tree().paused
+		$HUD/Paused.visible = get_tree().paused
+
+
 func limit_player_camera() -> void:
 	var used_rect := world_tilemap.get_used_rect()
 	var tile_size := world_tilemap.tile_set.tile_size
@@ -56,6 +62,5 @@ func spawn_ladders() -> void:
 				$Ladders.add_child(collision)
 
 
-func _on_door_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		print("Door touched by player")
+func _on_door_body_entered(_body: Node2D) -> void:
+	GameState.next_level()
