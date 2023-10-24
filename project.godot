@@ -22,6 +22,7 @@ run/size/mode=3
 [autoload]
 
 GameState="*res://scripts/game_state.gd"
+AudioPlayer="*res://scenes/system/audio_player.tscn"
 
 [display]
 

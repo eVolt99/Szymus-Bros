@@ -36,15 +36,15 @@ func spawn_items() -> void:
 		var data := items_tilemap.get_cell_tile_data(0, cell)
 		var type: String = data.get_custom_data("type")
 		match type:
-			"item":
-				var item: Item = item_scene.instantiate()
-				item.start(type, items_tilemap.map_to_local(cell))
-				$Items.add_child(item)
 			"door":
 				var door := door_scene.instantiate()
 				door.position = items_tilemap.map_to_local(cell)
 				door.body_entered.connect(_on_door_body_entered)
 				$Items.add_child(door)
+			_:
+				var item: Item = item_scene.instantiate()
+				item.start(type, items_tilemap.map_to_local(cell))
+				$Items.add_child(item)
 
 
 func spawn_ladders() -> void:

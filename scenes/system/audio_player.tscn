@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7fyevak4o1tu"]
 
-[ext_resource type="Script" path="res://scripts/system/AudioPlayer.gd" id="1_iyair"]
+[ext_resource type="Script" path="res://scripts/system/audio_player.gd" id="1_iyair"]
 [ext_resource type="AudioStream" uid="uid://d3p3sbp1ia3hf" path="res://assets/audio/main_menu.ogg" id="2_7ntc0"]
 
 [node name="AudioPlayer" type="Node"]
@@ -8,3 +8,4 @@ script = ExtResource("1_iyair")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7ntc0")
+volume_db = -12.0

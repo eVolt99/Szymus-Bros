@@ -11,4 +11,5 @@ func start(type: String, new_position: Vector2) -> void:
 
 func _on_body_entered(_body: Player) -> void:
 	picked_up.emit()
+	AudioPlayer.play_sfx("pickup", randf_range(0.95, 1.05))
 	queue_free()

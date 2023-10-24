@@ -14,10 +14,15 @@ var sounds := {
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 
-func play_sfx(sfx_name: String) -> void:
+## Play SFX, optional pitch scale
+func play_sfx(sfx_name: String, pitch_scale := 1.0) -> void:
+	if not sounds.has(sfx_name):
+		return
+
 	var asp := AudioStreamPlayer.new()
 	asp.stream = load(sounds[sfx_name])
 	asp.volume_db = -18
+	asp.pitch_scale = pitch_scale
 	asp.name = "asp_" + sfx_name
 	add_child(asp)
 	asp.play()
@@ -25,6 +30,10 @@ func play_sfx(sfx_name: String) -> void:
 	asp.queue_free()
 
 
+## Switches music to provided string
 func play_music(music_name: String) -> void:
+	if not music.has(music_name):
+		return
+
 	music_player.stream = load(music[music_name])
-	asp.play()
+	music_player.play()

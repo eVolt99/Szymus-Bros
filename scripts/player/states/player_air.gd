@@ -47,6 +47,7 @@ func unhandled_input(event: InputEvent) -> void:
 func jump() -> void:
 	if can_jump and jump_count < player.max_jumps:
 		player.velocity.y = -player.jump_impulse
+		AudioPlayer.play_sfx("jump", 1 + jump_count * player.jump_pitch)
 		double_jump_timer.start()
 		can_jump = false
 		jump_count += 1
