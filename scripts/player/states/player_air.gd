@@ -21,6 +21,13 @@ func update(_delta: float) -> void:
 	else:
 		player.animation.play("jump_down")
 
+	if player.position.y > 500:
+		player.hurt.emit()
+		if GameState.lives > 0:
+			GameState.restart_level()
+		else:
+			GameState.restart_game()
+
 
 func physics_update(delta: float) -> void:
 	player.handle_movement()

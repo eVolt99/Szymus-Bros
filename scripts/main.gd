@@ -6,4 +6,3 @@ func _ready() -> void:
 	var level := "level_%s" % level_num
 	var path := str("res://scenes/levels/", level, ".tscn")
 	add_child(load(path).instantiate())
-	AudioPlayer.play_music(level)
