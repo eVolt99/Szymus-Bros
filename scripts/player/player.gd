@@ -6,15 +6,19 @@ enum SlideCollision { DANGER = 1, ENEMY = 2, NONE = 3 }
 signal died
 signal lives_changed(new_lives: int)
 
+@export_group("Speed")
 @export var move_speed := 150.0
 @export var climb_speed := 75.0
+@export_group("Impulses")
 @export var jump_impulse := 350.0
-@export var gravity := 800.0
 @export var kill_impulse := 200.0
+@export_group("Properties")
 @export var max_jumps := 2
+@export var jump_pitch := 0.075
+@export var gravity := 800.0
 
 var can_climb := false
-var last_floor := false
+var last_floor := true
 var last_movement_direction := 0.0
 var lives := 5:
 	set = set_lives

@@ -9,6 +9,7 @@ const KNOCKBACK_STRENGTH := -200.0
 func enter(_msg := {}) -> void:
 	player.animation.play("hurt")
 	player.lives -= 1
+	AudioPlayer.play_sfx("hurt")
 	if player.lives <= 0:
 		state_machine.transition_to("PlayerDead")
 		return

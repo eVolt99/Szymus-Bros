@@ -27,5 +27,6 @@ func kill() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	set_physics_process(false)
 	$AnimationPlayer.play("death")
+	AudioPlayer.play_sfx("enemy_hit")
 	await $AnimationPlayer.animation_finished
 	queue_free()
