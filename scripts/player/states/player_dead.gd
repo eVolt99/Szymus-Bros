@@ -3,4 +3,4 @@ extends PlayerState
 
 
 func enter(_msg := {}) -> void:
-	GameState.restart()
+	GameState.restart_game()

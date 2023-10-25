@@ -3,8 +3,7 @@ extends CharacterBody2D
 
 enum SlideCollision { DANGER = 1, ENEMY = 2, NONE = 3 }
 
-signal died
-signal lives_changed(new_lives: int)
+signal hurt
 
 @export_group("Speed")
 @export var move_speed := 150.0
@@ -20,8 +19,6 @@ signal lives_changed(new_lives: int)
 var can_climb := false
 var last_floor := true
 var last_movement_direction := 0.0
-var lives := 5:
-	set = set_lives
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
@@ -80,13 +77,7 @@ func handle_collision(collision: SlideCollision) -> void:
 			velocity.y = -kill_impulse
 
 
-func set_lives(new_lives: int) -> void:
-	lives = new_lives
-	lives_changed.emit(lives)
-
-
-func reset(new_position: Vector2) -> void:
+func reset(new_position: Vector2, reset_lives := false) -> void:
 	position = new_position
-	lives = 5
-	show()
-	$CollisionShape2D.set_deferred("disabled", false)
+	if reset_lives:
+		GameState.lives = 5

@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://nv0ouqjbt71c"]
+[gd_scene load_steps=6 format=3 uid="uid://nv0ouqjbt71c"]
 
+[ext_resource type="Script" path="res://scripts/hud/hud.gd" id="1_110t1"]
 [ext_resource type="FontFile" uid="uid://bgdpfvu60gft5" path="res://assets/Kenney Thick.ttf" id="1_fkjf0"]
 [ext_resource type="Texture2D" uid="uid://c8dow5sej6tqj" path="res://assets/heart.png" id="2_g3ukv"]
 
@@ -16,6 +17,7 @@ outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_110t1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
@@ -49,6 +51,14 @@ layout_mode = 2
 texture = ExtResource("2_g3ukv")
 
 [node name="L3" type="TextureRect" parent="MarginContainer/LivesContainer"]
+layout_mode = 2
+texture = ExtResource("2_g3ukv")
+
+[node name="L4" type="TextureRect" parent="MarginContainer/LivesContainer"]
+layout_mode = 2
+texture = ExtResource("2_g3ukv")
+
+[node name="L5" type="TextureRect" parent="MarginContainer/LivesContainer"]
 layout_mode = 2
 texture = ExtResource("2_g3ukv")
 

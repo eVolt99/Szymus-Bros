@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b58vfdmlv82"]
+[gd_scene load_steps=8 format=3 uid="uid://b58vfdmlv82"]
 
 [ext_resource type="Texture2D" uid="uid://4v25x81gqvu6" path="res://assets/sprites/gem.png" id="1_4yilu"]
 [ext_resource type="Script" path="res://scripts/world/item.gd" id="1_rrcqn"]
 [ext_resource type="Texture2D" uid="uid://cdpid2t0vdifp" path="res://assets/sprites/cherry.png" id="1_vptsx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cdeup"]
-radius = 6.0
+radius = 5.0
 
 [sub_resource type="Animation" id="Animation_4yv2p"]
 resource_name = "cherry"
@@ -82,45 +82,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_h5avg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -7)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_gtngk"]
@@ -202,7 +163,6 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6qy63"]
 _data = {
-"RESET": SubResource("Animation_h5avg"),
 "cherry": SubResource("Animation_4yv2p"),
 "gem": SubResource("Animation_gtngk")
 }
@@ -212,13 +172,11 @@ collision_layer = 8
 script = ExtResource("1_rrcqn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -8)
-texture = ExtResource("1_vptsx")
+texture = ExtResource("1_4yilu")
 hframes = 5
-frame = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_cdeup")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

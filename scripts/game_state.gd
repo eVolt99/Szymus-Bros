@@ -8,12 +8,19 @@ var num_levels := 2
 var current_level := 0
 
 var game_scene := "res://scenes/main.tscn"
-var title_screen := "res://scenes/title.tscn"
+var title_screen := "res://scenes/main_menu.tscn"
+
+var score := 0
+var lives := 5
 
 
-func restart() -> void:
+func restart_game() -> void:
 	current_level = 0
 	get_tree().change_scene_to_file(title_screen)
+
+
+func restart_level() -> void:
+	get_tree().reload_current_scene()
 
 
 func next_level() -> void:

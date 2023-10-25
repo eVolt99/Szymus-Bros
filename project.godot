@@ -14,6 +14,7 @@ config/name="Szymon Bros"
 config/tags=PackedStringArray("learning")
 run/main_scene="res://scenes/hud/splash.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+run/max_fps=165
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -81,6 +82,10 @@ pause={
 2d_physics/layer_2="environment"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="items"
+
+[physics]
+
+common/physics_ticks_per_second=120
 
 [rendering]
 
