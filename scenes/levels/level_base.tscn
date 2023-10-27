@@ -140,12 +140,13 @@ libraries = {
 "": SubResource("AnimationLibrary_5bsca")
 }
 
-[node name="WorldTileMap" parent="." instance=ExtResource("5_wrktr")]
-
 [node name="ItemsTileMap" type="TileMap" parent="."]
 position = Vector2(4, -1)
 tile_set = SubResource("TileSet_jk0lm")
 format = 2
+
+[node name="WorldTileMap" parent="." instance=ExtResource("5_wrktr")]
+layer_0/z_index = 1
 
 [node name="DangerTileMap" type="TileMap" parent="." groups=["danger"]]
 tile_set = SubResource("TileSet_3r14y")
