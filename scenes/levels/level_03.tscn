@@ -29,7 +29,7 @@ position = Vector2(3017, 352)
 move_speed = 30.0
 
 [node name="SpawnPosition" parent="." index="8"]
-position = Vector2(3093, 99)
+position = Vector2(140, 305)
 
 [node name="Player" parent="." index="9"]
 position = Vector2(140, 305)
