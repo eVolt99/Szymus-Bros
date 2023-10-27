@@ -4,7 +4,7 @@ var full_screen := {
 	true: DisplayServer.WINDOW_MODE_FULLSCREEN, false: DisplayServer.WINDOW_MODE_WINDOWED
 }
 var is_full_screen := false
-var num_levels := 2
+var num_levels := 3
 var current_level := 0
 
 var game_scene := "res://scenes/main.tscn"

@@ -521,6 +521,7 @@ texture = ExtResource("2_d2e7e")
 11:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 11:7/0/physics_layer_0/angular_velocity = 0.0
 7:10/0 = 0
+7:10/0/z_index = -1
 7:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:10/0/physics_layer_0/angular_velocity = 0.0
 7:10/0/custom_data_0 = "ladder"
@@ -1045,3 +1046,4 @@ pattern_2 = SubResource("TileMapPattern_ncy0v")
 [node name="WorldTileMap" type="TileMap"]
 tile_set = SubResource("TileSet_7kga6")
 format = 2
+layer_0/name = "world"

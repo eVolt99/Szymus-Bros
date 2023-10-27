@@ -146,7 +146,7 @@ tile_set = SubResource("TileSet_jk0lm")
 format = 2
 
 [node name="WorldTileMap" parent="." instance=ExtResource("5_wrktr")]
-layer_0/z_index = 1
+z_index = 1
 
 [node name="DangerTileMap" type="TileMap" parent="." groups=["danger"]]
 tile_set = SubResource("TileSet_3r14y")
@@ -163,6 +163,7 @@ script = ExtResource("9_e02d0")
 [node name="SpawnPosition" type="Marker2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_71cgg")]
+z_index = 2
 
 [connection signal="body_entered" from="Ladders" to="Ladders" method="_on_body_entered"]
 [connection signal="body_exited" from="Ladders" to="Ladders" method="_on_body_exited"]

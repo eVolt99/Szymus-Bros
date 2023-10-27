@@ -1,6 +1,5 @@
 [gd_scene load_steps=20 format=3 uid="uid://bjriv8yh6i6se"]
 
-[ext_resource type="Texture2D" uid="uid://bps2dkhdtg5nt" path="res://assets/player_sheet.png" id="1_cbsmq"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_nekf4"]
 [ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="3_2n3wg"]
 [ext_resource type="Script" path="res://scripts/player/states/player_idle.gd" id="4_o5oo1"]
@@ -10,6 +9,9 @@
 [ext_resource type="Script" path="res://scripts/player/states/player_dead.gd" id="8_xgemk"]
 [ext_resource type="Script" path="res://scripts/player/states/player_coyote.gd" id="9_yithg"]
 [ext_resource type="Script" path="res://scripts/player/states/player_climb.gd" id="10_hx3ed"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yjukb"]
+load_path = "res://.godot/imported/player_sheet.png-641acc92a6c5fb700393e6fabd3443f6.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xbt"]
 size = Vector2(10, 20)
@@ -149,7 +151,7 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("1_cbsmq")
+texture = SubResource("CompressedTexture2D_yjukb")
 hframes = 19
 frame = 10
 
