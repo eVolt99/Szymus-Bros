@@ -1,7 +1,13 @@
 extends Node
 
 var music := {
-	"main_menu": "res://assets/audio/main_menu.ogg", "level_01": "res://assets/audio/level_01.ogg"
+	"main_menu": "res://assets/audio/main_menu.ogg",
+	"level_01": "res://assets/audio/level_01.ogg",
+	"level_02": "res://assets/audio/level_02.ogg",
+	"level_03": "res://assets/audio/level_03.ogg",
+	"level_04": "res://assets/audio/level_04.ogg",
+	"level_05": "res://assets/audio/level_05.ogg",
+	"end": "res://assets/audio/end.ogg",
 }
 
 var sounds := {
