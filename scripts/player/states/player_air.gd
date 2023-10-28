@@ -13,6 +13,9 @@ func enter(msg := {}) -> void:
 		jump_count = 0
 		can_jump = true
 		jump()
+	else:
+		jump_count = 1
+		can_jump = true
 
 
 func update(_delta: float) -> void:
