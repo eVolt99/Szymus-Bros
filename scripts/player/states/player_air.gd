@@ -13,6 +13,9 @@ func enter(msg := {}) -> void:
 		jump_count = 0
 		can_jump = true
 		jump()
+	else:
+		jump_count = 1
+		can_jump = true
 
 
 func update(_delta: float) -> void:
@@ -20,6 +23,13 @@ func update(_delta: float) -> void:
 		player.animation.play("jump_up")
 	else:
 		player.animation.play("jump_down")
+
+	if player.position.y > 500:
+		player.hurt.emit()
+		if GameState.lives > 0:
+			GameState.restart_level()
+		else:
+			GameState.restart_game()
 
 
 func physics_update(delta: float) -> void:

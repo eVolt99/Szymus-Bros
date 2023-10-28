@@ -4,9 +4,8 @@
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_1c7au"]
 [ext_resource type="Texture2D" uid="uid://b6kxjx8bteam5" path="res://assets/sprites/opossum.png" id="1_s3gbk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nff2j"]
-radius = 8.0
-height = 24.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c51hp"]
+size = Vector2(13, 19)
 
 [sub_resource type="Animation" id="Animation_qwqvb"]
 resource_name = "death"
@@ -82,11 +81,12 @@ script = ExtResource("1_1c7au")
 position = Vector2(0, -14)
 texture = ExtResource("1_s3gbk")
 hframes = 6
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -8)
+position = Vector2(-2.5, -6.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_nff2j")
+shape = SubResource("RectangleShape2D_c51hp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")

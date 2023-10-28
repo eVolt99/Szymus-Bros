@@ -1,5 +1,8 @@
 extends Node2D
 
+@export_range(0, 100) var minimum_score := 25
+@export var minimum_extra_life := 25
+
 var item_scene: PackedScene = preload("res://scenes/world/item.tscn")
 var door_scene: PackedScene = preload("res://scenes/world/door.tscn")
 
@@ -35,16 +38,18 @@ func spawn_items() -> void:
 	for cell in item_cells:
 		var data := items_tilemap.get_cell_tile_data(0, cell)
 		var type: String = data.get_custom_data("type")
-		match type:
-			"door":
-				var door := door_scene.instantiate()
-				door.position = items_tilemap.map_to_local(cell)
-				door.body_entered.connect(_on_door_body_entered)
-				$Items.add_child(door)
-			_:
-				var item: Item = item_scene.instantiate()
-				item.start(type, items_tilemap.map_to_local(cell))
-				$Items.add_child(item)
+		if type == "door":
+			var door := door_scene.instantiate()
+			door.position = items_tilemap.map_to_local(cell)
+			door.body_entered.connect(_on_door_body_entered)
+			door.name = "Door"
+			door.minimum_score = minimum_score
+			$Items.add_child(door)
+		elif type == "cherry" or type == "gem":
+			var item: Item = item_scene.instantiate()
+			item.start(type, items_tilemap.map_to_local(cell))
+			item.picked_up.connect(update_score)
+			$Items.add_child(item)
 
 
 func spawn_ladders() -> void:
@@ -62,5 +67,26 @@ func spawn_ladders() -> void:
 				$Ladders.add_child(collision)
 
 
+func update_score() -> void:
+	GameState.score += 1
+	if GameState.score >= minimum_extra_life:
+		if GameState.lives < 5:
+			add_life()
+	if GameState.score >= minimum_score:
+		$Items/Door.open()
+	$HUD.change_score(GameState.score)
+
+
+func update_lives() -> void:
+	GameState.lives -= 1
+	$HUD.change_lives(GameState.lives)
+
+
+func add_life() -> void:
+	GameState.lives += 1
+	$HUD.change_lives(GameState.lives)
+
+
 func _on_door_body_entered(_body: Node2D) -> void:
-	GameState.next_level()
+	if GameState.score >= minimum_score:
+		GameState.next_level()
